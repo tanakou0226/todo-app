@@ -1,16 +1,15 @@
 
 import { useTodo } from "../hooks/useTodo";
-import { Todo } from "../types/Todo";
 import { TodoAdd } from "./TodoAdd";
 import { TodoList } from "./TodoList";
-import React, { FC } from "react";
 
+import React from "react";
 import { useRef } from "react";
 
-function Home() {
+export const  Home = () => {
   // カスタムフックから必要な変数を取得
   const { todoList, addTodoListItem, deleteTodoListItem } = useTodo();
-
+  
   const inputEl = useRef<HTMLTextAreaElement>(null);
 
   const handleAddTodoListItem = () => {
@@ -21,11 +20,14 @@ function Home() {
     inputEl.current!.value = "";
   };
 
+
   return (
-    <>
+    <div className="TodoApp">
+      <h1>Todoリスト</h1>
+
       <TodoAdd buttonText="+ 追加" inputEl={inputEl} handleAddTodoListItem={handleAddTodoListItem} />
       <TodoList todoList={todoList} deleteTodoListItem={deleteTodoListItem} />
-    </>
+    </div>
   );
 }
 

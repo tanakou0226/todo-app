@@ -8,7 +8,7 @@ export const useTodo = () => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
 
   useEffect(() => {
-    todoData.getAllTodosData().then((todo) => {
+    todoData.getAllTodosData().then((todo: Todo[]) => {
       setTodoList([...todo].reverse());
     });
   }, []);

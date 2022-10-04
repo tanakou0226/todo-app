@@ -2,15 +2,22 @@ import React, { FC } from "react"
 import { Todo } from "../types/Todo"
 import {useTodo} from "../hooks/useTodo"
 import { Box, Button } from "@mui/material"
-import Modal from "react-modal"
+import Modal from "react-modal";
+import { useParams } from "react-router-dom";
+
 
 export const Detail: FC = () => {
 
-  const {todoList} = useTodo();
-  
-  const detail_todo = todoList.filter((todo: Todo) => todo.id == "9d13b651-2443-4332-bdf2-53f16619a8b4")
+  const { id } = useParams();
+
+
   //Modal操作のための変数
   const [IsUpdateModalOpen, setIsUpdateOpen] = React.useState(false);
+
+  const { todoList} = useTodo()
+
+  const item = todoList.filter((todo: Todo) => todo.id == id)[0]
+  console.log("detail.tsx", item)
 
   //Modalの見た目
   const customStyles = {
@@ -24,24 +31,29 @@ export const Detail: FC = () => {
     },
   };
 
-  console.log(detail_todo[0])
+  // const detail_todo = todoList.filter((todo: Todo) => todo.id == id)
+
 
   return (
     <>
+      {todoList.length !== 0 && (
       <Box>
         <Box >
-          ここにタイトルを表示
+          {item.todo}
           <Button onClick={() => setIsUpdateOpen(true)}>編集</Button>
           <Modal 
             isOpen={IsUpdateModalOpen}
             style={customStyles}>
-            モーダル開いた
+              {item.todo}
+              {item.contents}
+              <Button onClick={() => setIsUpdateOpen(false)}>閉じる</Button>
           </Modal>
         </Box>
         <Box>
-          ここに詳細を表示
+          {item.contents}
         </Box>
       </Box>
+      )}
     </>
   );
 };
