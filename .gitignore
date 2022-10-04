@@ -1,4 +1,4 @@
 .venv
-.sqlite3
 node_module
 env
+backendo/db.sqlite3
