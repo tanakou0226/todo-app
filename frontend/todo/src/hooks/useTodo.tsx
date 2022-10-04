@@ -13,9 +13,9 @@ export const useTodo = () => {
     });
   }, []);
 
-  const addTodoListItem = (todo: string, todoContent: string, created_at: string) => {
+  const addTodoListItem = (todo: string, todoContent: string) => {
     // あたらしいitemを作成する
-    const newTodoItem = { id: ulid(), todo: todo, contents: todoContent, created_data: created_at };
+    const newTodoItem = { id: ulid(), todo: todo, contents: todoContent};
 
     // サーバーの追加APIを呼ぶ
     todoData.addTodo(newTodoItem).then((addTodo) => {

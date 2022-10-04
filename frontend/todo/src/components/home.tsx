@@ -17,7 +17,7 @@ function Home() {
     if (inputEl.current?.value === "") {
       return;
     }
-    addTodoListItem(inputEl.current!.value, "content", Date());
+    addTodoListItem(inputEl.current!.value, "content");
     inputEl.current!.value = "";
   };
 
