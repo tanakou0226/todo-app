@@ -4,14 +4,14 @@ import { RefObject } from "react";
 type Props = {
   buttonText: string
   inputEl: RefObject<HTMLTextAreaElement>
-  handleAddTodoListItem: () => void
+  AddTodoListItem: () => void
 }
 
-export const TodoAdd: FC<Props> = ({ buttonText, inputEl, handleAddTodoListItem }) => {
+export const TodoAdd: FC<Props> = ({ buttonText, inputEl, AddTodoListItem }) => {
   return (
     <>
       <textarea ref={inputEl} />
-      <button onClick={handleAddTodoListItem}>{buttonText}</button>
+      <button onClick={AddTodoListItem}>{buttonText}</button>
     </>
   );
 };

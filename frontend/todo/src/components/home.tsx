@@ -13,7 +13,7 @@ function Home() {
 
   const inputEl = useRef<HTMLTextAreaElement>(null);
 
-  const handleAddTodoListItem = () => {
+  const AddTodoListItem = () => {
     if (inputEl.current?.value === "") {
       return;
     }
@@ -23,7 +23,7 @@ function Home() {
 
   return (
     <>
-      <TodoAdd buttonText="+ 追加" inputEl={inputEl} handleAddTodoListItem={handleAddTodoListItem} />
+      <TodoAdd buttonText="+ 追加" inputEl={inputEl} AddTodoListItem={AddTodoListItem} />
       <TodoList todoList={todoList} deleteTodoListItem={deleteTodoListItem} />
     </>
   );
