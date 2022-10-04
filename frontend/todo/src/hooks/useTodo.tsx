@@ -9,7 +9,7 @@ export const useTodo = () => {
 
   useEffect(() => {
     todoData.getAllTodos().then((todo) => {
-      setTodoList([...todo].reverse());
+      setTodoList([...todo]);
     });
   }, []);
 
