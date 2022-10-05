@@ -6,7 +6,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
 type Props = {
-    changeIsOpen: boolean
+    changeIsOpen: (IsOpen: boolean) => void
 }
 
 export const AddModal: FC<Props> = ( { changeIsOpen }) => {
@@ -16,7 +16,6 @@ export const AddModal: FC<Props> = ( { changeIsOpen }) => {
     const [content, setContent] = useState<string>(" ")
     const addTodo = () => {
         addTodoListItem(title, content)
-        changeIsOpen = false
     }
 
     const TitleChange = (
@@ -43,8 +42,11 @@ export const AddModal: FC<Props> = ( { changeIsOpen }) => {
                 </Box>
                 <Box>
                     詳細
-                    <textarea value={content} onChange={ContentChange}></textarea>
                 </Box>
+                <Box>
+                <textarea value={content} onChange={ContentChange}></textarea>
+                </Box>
+                <Button onClick={() => changeIsOpen(false)}>閉じる</Button>
                 <Button type='submit' onClick={addTodo}>作成</Button>
             </form>
         </>

@@ -8,7 +8,7 @@ import Button from '@mui/material/Button'
 type Props = {
     id: string
     todo: Todo
-    changeIsOpen: boolean
+    changeIsOpen: (IsOpen: boolean) => void
 }
 
 export const UpdateModal: FC<Props> = ( {  id, todo, changeIsOpen }) => {
@@ -35,6 +35,12 @@ export const UpdateModal: FC<Props> = ( {  id, todo, changeIsOpen }) => {
         setContent(event.target.value);
       };
 
+      const ModalClose = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      ): void => {
+        changeIsOpen(false);
+      };
+
 
     return(
         <>
@@ -47,9 +53,13 @@ export const UpdateModal: FC<Props> = ( {  id, todo, changeIsOpen }) => {
                 </Box>
                 <Box>
                     詳細
-                    <textarea value={content} onChange={ContentChange}></textarea>
                 </Box>
+                <Box>
+                <textarea value={content} onChange={ContentChange}></textarea>
+                </Box>
+                <Button onClick={() => changeIsOpen(false)}>削除</Button>
                 <Button type='submit' onClick={updateTodo}>作成</Button>
+
             </form>
         </>
     )

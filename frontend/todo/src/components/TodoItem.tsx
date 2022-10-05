@@ -12,14 +12,12 @@ export const TodoItem: FC<Props> = ({ todo, deleteTodoListItem }) => {
   // onClickイベントが発生したら、useTodoフックを呼び出す
   const handleDeleteTodoListItem = () => deleteTodoListItem(todo.id);
 
-  console.log("Item.tsx, todo_list", todo)
-
   return (
     <>
       <Link to={`/${todo.id}`}>
         {todo.todo}
-        <button onClick={handleDeleteTodoListItem}>削除</button>
       </Link>
+      <button onClick={handleDeleteTodoListItem}>削除</button>
     </>
   );
 };
