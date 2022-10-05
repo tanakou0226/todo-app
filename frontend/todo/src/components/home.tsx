@@ -1,29 +1,17 @@
 
 import { useTodo } from "../hooks/useTodo";
-import { TodoAdd } from "./TodoAdd";
 import { TodoList } from "./TodoList";
 
 import React from "react";
-import { useRef } from "react";
 import Modal from "react-modal";
-import { Box, Button } from "@mui/material"
+import { Button } from "@mui/material"
 import { AddModal } from "./AddModal";
 
 Modal.setAppElement("#root");
 
 export const  Home = () => {
   // カスタムフックから必要な変数を取得
-  const { todoList, addTodoListItem, deleteTodoListItem } = useTodo();
-  
-  const inputEl = useRef<HTMLTextAreaElement>(null);
-
-  const handleAddTodoListItem = () => {
-    if (inputEl.current?.value === "") {
-      return;
-    }
-    addTodoListItem(inputEl.current!.value, "content");
-    inputEl.current!.value = "";
-  };
+  const { todoList, deleteTodoListItem } = useTodo();
 
     //Modalの見た目
     const customStyles = {
@@ -37,17 +25,17 @@ export const  Home = () => {
       },
     };
 
-    const [IsUpdateModalOpen, setIsUpdateOpen] = React.useState(false);
+    const [IsUpdateModalOpen, setIsAddOpen] = React.useState(false);
 
 
   return (
     <div className="TodoApp">
       <h1>Todoリスト</h1>
-      <Button onClick={() => setIsUpdateOpen(true)}>追加</Button>
+      <Button onClick={() => setIsAddOpen(true)}>追加</Button>
       <Modal 
             isOpen={IsUpdateModalOpen}
             style={customStyles}>
-              <AddModal changeIsOpen={setIsUpdateOpen}/>
+              <AddModal changeIsOpen={setIsAddOpen}/>
       </Modal>
 
       <TodoList todoList={todoList} deleteTodoListItem={deleteTodoListItem} />
