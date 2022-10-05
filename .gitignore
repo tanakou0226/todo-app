@@ -2,3 +2,4 @@
 node_module
 env
 backendo/db.sqlite3
+backend/db.sqlite3
