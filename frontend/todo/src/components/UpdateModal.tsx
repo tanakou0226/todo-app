@@ -23,22 +23,16 @@ export const UpdateModal: FC<Props> = ( {  id, todo, changeIsOpen }) => {
 
     }
 
-    const TitleChange = (
+    const changeTitle = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
       ): void => {
         setTitle(event.target.value);
       };
 
-      const ContentChange = (
+      const changeContent = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
       ): void => {
         setContent(event.target.value);
-      };
-
-      const ModalClose = (
-        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-      ): void => {
-        changeIsOpen(false);
       };
 
 
@@ -49,13 +43,13 @@ export const UpdateModal: FC<Props> = ( {  id, todo, changeIsOpen }) => {
                     タイトル
                 </Box>
                 <Box>
-                    <textarea value={title} onChange={TitleChange}></textarea>
+                    <textarea value={title} onChange={changeTitle}></textarea>
                 </Box>
                 <Box>
                     詳細
                 </Box>
                 <Box>
-                <textarea value={content} onChange={ContentChange}></textarea>
+                <textarea value={content} onChange={changeContent}></textarea>
                 </Box>
                 <Button onClick={() => changeIsOpen(false)}>削除</Button>
                 <Button type='submit' onClick={updateTodo}>作成</Button>
