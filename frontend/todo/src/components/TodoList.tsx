@@ -5,6 +5,7 @@ import { FC } from "react";
 type Props = {
   todoList: Todo[]
   deleteTodoListItem: (id: string) => void
+  filter: string
 }
 
 // TodoItemをループして表示
@@ -12,6 +13,7 @@ type Props = {
 export const TodoList: FC<Props> = ({
   todoList,
   deleteTodoListItem,
+  filter,
 }) => {
 
   return (
@@ -20,6 +22,7 @@ export const TodoList: FC<Props> = ({
         <>
           <ul>
             {todoList.map((todo) => (
+              (todo.todo.indexOf(filter) > -1 || todo.contents.indexOf(filter) > -1) &&
               <li key={todo.id}>
                 <TodoItem todo={todo} key={todo.id} deleteTodoListItem={deleteTodoListItem} />
               </li>

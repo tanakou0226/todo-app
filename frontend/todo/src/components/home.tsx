@@ -4,10 +4,10 @@ import { TodoAdd } from "./TodoAdd";
 import { TodoList } from "./TodoList";
 
 import React from "react";
-import { useRef } from "react";
 import Modal from "react-modal";
 import { Box, Button } from "@mui/material"
 import { AddModal } from "./AddModal";
+import { Filter} from "./filter"
 
 Modal.setAppElement("#root");
 
@@ -15,16 +15,6 @@ export const  Home = () => {
   // カスタムフックから必要な変数を取得
   const { todoList, addTodoListItem, deleteTodoListItem } = useTodo();
   
-  const inputEl = useRef<HTMLTextAreaElement>(null);
-
-  const handleAddTodoListItem = () => {
-    if (inputEl.current?.value === "") {
-      return;
-    }
-    addTodoListItem(inputEl.current!.value, "content");
-    inputEl.current!.value = "";
-  };
-
     //Modalの見た目
     const customStyles = {
       content: {
@@ -38,11 +28,17 @@ export const  Home = () => {
     };
 
     const [IsUpdateModalOpen, setIsUpdateOpen] = React.useState(false);
+    const [filter, setFilter] = React.useState<string>("")
+
+    const changeFilter = (filter: string) => {
+      setFilter(filter)
+    }
 
 
   return (
     <div className="TodoApp">
       <h1>Todoリスト</h1>
+      <Filter setKeyword={changeFilter} />
       <Button onClick={() => setIsUpdateOpen(true)}>追加</Button>
       <Modal 
             isOpen={IsUpdateModalOpen}
@@ -50,7 +46,7 @@ export const  Home = () => {
               <AddModal changeIsOpen={setIsUpdateOpen}/>
       </Modal>
 
-      <TodoList todoList={todoList} deleteTodoListItem={deleteTodoListItem} />
+      <TodoList todoList={todoList} deleteTodoListItem={deleteTodoListItem} filter={filter} />
     </div>
   );
 }
