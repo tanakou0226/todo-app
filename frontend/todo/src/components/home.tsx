@@ -1,9 +1,7 @@
 
 import { useTodo } from "../hooks/useTodo";
-import { Todo } from "../types/Todo";
-import { TodoAdd } from "./TodoAdd";
+import { InputForm } from "./InputForm";
 import { TodoList } from "./TodoList";
-import React, { FC } from "react";
 
 import { useRef } from "react";
 
@@ -23,7 +21,7 @@ function Home() {
 
   return (
     <>
-      <TodoAdd buttonText="+ 追加" inputEl={inputEl} AddTodoListItem={AddTodoListItem} />
+      <InputForm buttonText="+ 追加" inputEl={inputEl} onClick={AddTodoListItem} />
       <TodoList todoList={todoList} deleteTodoListItem={deleteTodoListItem} />
     </>
   );
