@@ -8,7 +8,7 @@ export const Detail: FC = () => {
 
   const {todoList} = useTodo();
   
-  const detail_todo = todoList.filter((todo: Todo) => todo.id == "9d13b651-2443-4332-bdf2-53f16619a8b4")
+  const DetailTodo = todoList.filter((todo: Todo) => todo.id == "9d13b651-2443-4332-bdf2-53f16619a8b4")
   //Modal操作のための変数
   const [IsUpdateModalOpen, setIsUpdateOpen] = React.useState(false);
 
@@ -24,7 +24,7 @@ export const Detail: FC = () => {
     },
   };
 
-  console.log(detail_todo[0])
+  console.log(DetailTodo[0])
 
   return (
     <>

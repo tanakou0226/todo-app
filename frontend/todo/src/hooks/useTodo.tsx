@@ -8,17 +8,17 @@ export const useTodo = () => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
 
   useEffect(() => {
-    todoData.getAllTodosData().then((todo) => {
-      setTodoList([...todo].reverse());
+    todoData.getAllTodos().then((todo) => {
+      setTodoList([...todo]);
     });
   }, []);
 
-  const addTodoListItem = (todo: string, todoContent: string, created_at: string) => {
+  const addTodoListItem = (todo: string, todoContent: string) => {
     // あたらしいitemを作成する
-    const newTodoItem = { id: ulid(), todo: todo, contents: todoContent, created_data: created_at };
+    const newTodoItem = { id: ulid(), todo: todo, contents: todoContent};
 
     // サーバーの追加APIを呼ぶ
-    todoData.addTodoData(newTodoItem).then((addTodo) => {
+    todoData.addTodo(newTodoItem).then((addTodo) => {
       // addTodoをtodoListに追加してstateにセットする
       setTodoList([addTodo, ...todoList]);
     });
@@ -26,7 +26,7 @@ export const useTodo = () => {
 
   const deleteTodoListItem = (id: string) => {
     // サーバーの削除APIを呼ぶ
-    todoData.deleteTodoData(id).then((deletedid) => {
+    todoData.deleteTodo(id).then((deletedid) => {
       const newTodoList = todoList.filter((item) => item.id !== deletedid);
       // 1件削除された新しいtodoListに追加してstateにセットする
       setTodoList(newTodoList);
