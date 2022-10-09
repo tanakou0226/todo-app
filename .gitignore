@@ -3,3 +3,4 @@ env
 node_module
 .venv
 backend/db.sqlite3
+
