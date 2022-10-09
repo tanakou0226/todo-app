@@ -9,8 +9,8 @@ import { UpdateModal} from "./UpdateModal"
 
 export const Detail: FC = () => {
 
-  const { id } = useParams();
 
+  const { id } = useParams();
 
   //Modal操作のための変数
   const [IsUpdateModalOpen, setIsUpdateOpen] = React.useState(false);
@@ -30,7 +30,6 @@ export const Detail: FC = () => {
       transform: 'translate(-50%, -50%)',
     },
   };
-
 
 
   return (

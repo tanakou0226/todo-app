@@ -1,5 +1,6 @@
 
 import { useTodo } from "../hooks/useTodo";
+import { InputForm } from "./InputForm";
 import { TodoList } from "./TodoList";
 
 import React from "react";
