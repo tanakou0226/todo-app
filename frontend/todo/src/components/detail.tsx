@@ -8,8 +8,8 @@ import { useParams } from "react-router-dom";
 
 export const Detail: FC = () => {
 
-  const { id } = useParams();
 
+  const { id } = useParams();
 
   //Modal操作のための変数
   const [IsUpdateModalOpen, setIsUpdateOpen] = React.useState(false);
@@ -32,7 +32,6 @@ export const Detail: FC = () => {
   };
 
   // const detail_todo = todoList.filter((todo: Todo) => todo.id == id)
-
 
   return (
     <>

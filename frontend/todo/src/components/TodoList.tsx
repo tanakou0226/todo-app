@@ -21,7 +21,7 @@ export const TodoList: FC<Props> = ({
           <ul>
             {todoList.map((todo) => (
               <li key={todo.id}>
-                <TodoItem todo={todo} key={todo.id} deleteTodoListItem={deleteTodoListItem} />
+                <TodoItem todo={todo} key={todo.id} deleteTodo={deleteTodoListItem} />
               </li>
             ))}
           </ul>

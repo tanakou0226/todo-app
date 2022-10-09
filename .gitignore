@@ -1,4 +1,5 @@
-.venv
-node_module
 env
-backendo/db.sqlite3
+.sqlite3
+node_module
+.venv
+backend/db.sqlite3

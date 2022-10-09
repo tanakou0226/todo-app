@@ -1,6 +1,6 @@
 
 import { useTodo } from "../hooks/useTodo";
-import { TodoAdd } from "./TodoAdd";
+import { InputForm } from "./InputForm";
 import { TodoList } from "./TodoList";
 
 import React from "react";
@@ -12,22 +12,23 @@ export const  Home = () => {
   
   const inputEl = useRef<HTMLTextAreaElement>(null);
 
-  const handleAddTodoListItem = () => {
+  const AddTodoListItem = () => {
     if (inputEl.current?.value === "") {
       return;
     }
-    addTodoListItem(inputEl.current!.value, "content", Date());
+    addTodoListItem(inputEl.current!.value, "content");
     inputEl.current!.value = "";
   };
 
 
   return (
-    <div className="TodoApp">
-      <h1>Todoリスト</h1>
-
-      <TodoAdd buttonText="+ 追加" inputEl={inputEl} handleAddTodoListItem={handleAddTodoListItem} />
-      <TodoList todoList={todoList} deleteTodoListItem={deleteTodoListItem} />
-    </div>
+    <>
+      <div className="TodoApp">
+        <h1>Todoリスト</h1>
+        <InputForm buttonText="+ 追加" inputEl={inputEl} onClick={AddTodoListItem} />
+        <TodoList todoList={todoList} deleteTodoListItem={deleteTodoListItem} />
+      </div>
+    </>
   );
 }
 
