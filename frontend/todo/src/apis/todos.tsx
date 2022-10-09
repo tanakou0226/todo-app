@@ -23,6 +23,6 @@ export const deleteTodo = async (id: string) => {
 
 // 1件のTODOを更新する
 export const updateTodoData = async (id: string, todo: Todo) => {
-  const response = await axios.put(`${todoDataUrl}/${id}`, todo);
+  const response = await axios.put(`${todoDataUrl}${id}`, todo);
   return response.data;
 };

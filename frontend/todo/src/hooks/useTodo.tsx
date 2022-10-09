@@ -13,9 +13,9 @@ export const useTodo = () => {
     });
   }, []);
 
-  const addTodoListItem = (todo: string, todoContent: string) => {
+  const addTodoListItem = (todoTitle: string, todoContent: string) => {
     // あたらしいitemを作成する
-    const newTodoItem = { id: ulid(), todo: todo, contents: todoContent};
+    const newTodoItem = { id: ulid(), todo: todoTitle, contents: todoContent};
 
     // サーバーの追加APIを呼ぶ
     todoData.addTodo(newTodoItem).then((addTodo) => {
@@ -33,6 +33,17 @@ export const useTodo = () => {
     });
   };
 
+  const updateItem = (updateId: string, updateTitle: string, updateContent: string) => {
+
+    const updateTodoItem = { id: updateId, todo: updateTitle, contents: updateContent};
+
+    todoData.updateTodoData(updateId, updateTodoItem).then((updatedTodo) => {
+      const newTodoList = todoList.map((item) => (item.id !== updatedTodo.id ? item : updatedTodo));
+      console.log(newTodoList)
+      setTodoList(newTodoList)
+    })
+  }
+
   // 作成した関数を返す
-  return { todoList, addTodoListItem, deleteTodoListItem };
+  return { todoList, addTodoListItem, deleteTodoListItem, updateItem };
 };

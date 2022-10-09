@@ -4,6 +4,7 @@ import {useTodo} from "../hooks/useTodo"
 import { Box, Button } from "@mui/material"
 import Modal from "react-modal";
 import { useParams } from "react-router-dom";
+import { UpdateModal} from "./UpdateModal"
 
 
 export const Detail: FC = () => {
@@ -17,7 +18,6 @@ export const Detail: FC = () => {
   const { todoList} = useTodo()
 
   const item = todoList.filter((todo: Todo) => todo.id == id)[0]
-  console.log("detail.tsx", item)
 
   //Modalの見た目
   const customStyles = {
@@ -31,7 +31,6 @@ export const Detail: FC = () => {
     },
   };
 
-  // const detail_todo = todoList.filter((todo: Todo) => todo.id == id)
 
   return (
     <>
@@ -43,9 +42,8 @@ export const Detail: FC = () => {
           <Modal 
             isOpen={IsUpdateModalOpen}
             style={customStyles}>
-              {item.todo}
-              {item.contents}
-              <Button onClick={() => setIsUpdateOpen(false)}>閉じる</Button>
+              < UpdateModal id={item.id} todo={item} changeIsOpen={setIsUpdateOpen}/>
+            
           </Modal>
         </Box>
         <Box>

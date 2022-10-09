@@ -4,31 +4,43 @@ import { InputForm } from "./InputForm";
 import { TodoList } from "./TodoList";
 
 import React from "react";
-import { useRef } from "react";
+import Modal from "react-modal";
+import { Button } from "@mui/material"
+import { AddModal } from "./AddModal";
+
+Modal.setAppElement("#root");
 
 export const  Home = () => {
   // カスタムフックから必要な変数を取得
-  const { todoList, addTodoListItem, deleteTodoListItem } = useTodo();
-  
-  const inputEl = useRef<HTMLTextAreaElement>(null);
+  const { todoList, deleteTodoListItem } = useTodo();
 
-  const AddTodoListItem = () => {
-    if (inputEl.current?.value === "") {
-      return;
-    }
-    addTodoListItem(inputEl.current!.value, "content");
-    inputEl.current!.value = "";
-  };
+    //Modalの見た目
+    const customStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+      },
+    };
+
+    const [IsUpdateModalOpen, setIsAddOpen] = React.useState(false);
 
 
   return (
-    <>
-      <div className="TodoApp">
-        <h1>Todoリスト</h1>
-        <InputForm buttonText="+ 追加" inputEl={inputEl} onClick={AddTodoListItem} />
-        <TodoList todoList={todoList} deleteTodoListItem={deleteTodoListItem} />
-      </div>
-    </>
+    <div className="TodoApp">
+      <h1>Todoリスト</h1>
+      <Button onClick={() => setIsAddOpen(true)}>追加</Button>
+      <Modal 
+            isOpen={IsUpdateModalOpen}
+            style={customStyles}>
+              <AddModal changeIsOpen={setIsAddOpen}/>
+      </Modal>
+
+      <TodoList todoList={todoList} deleteTodoListItem={deleteTodoListItem} />
+    </div>
   );
 }
 
